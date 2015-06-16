@@ -9,7 +9,7 @@ ENV CONSUL_CONFIG_BINDING ${CONSUL_CONFIG_BINDING_TEMPLATE}:$CONSUL_CONFIG_BINDI
 ENV CONSUL_URL 127.0.0.1:8500
 
 ENV CONSUL_VER 0.10.0
-ENV CONSUL_BIN freebsd_amd64
+ENV CONSUL_BIN linux_amd64
 
 #Install consul-template
 RUN apt-get update && apt-get install -y wget
