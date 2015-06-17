@@ -9,7 +9,7 @@ consul-template -consul ${CONSUL_URL} -template ${CONSUL_CONFIG_BINDING} -once
 cat ${CONSUL_CONFIG_BINDING_CONFIG}
 
 echo "Starting HAProxy..."
-haproxy -f ${CONSUL_CONFIG_BINDING_CONFIG} -p /var/run/haproxy.pid -D
+service haproxy start
 
 echo "Binding gracefully restart for HAProxy..."
-consul-template -consul ${CONSUL_URL} -log-level info -template "${CONSUL_CONFIG_BINDING}:haproxy -f ${CONSUL_CONFIG_BINDING_CONFIG} -p /var/run/haproxy.pid -sf $(cat /var/run/haproxy.pid)"
+consul-template -consul ${CONSUL_URL} -log-level info -template "${CONSUL_CONFIG_BINDING}:service haproxy reload" -dry
